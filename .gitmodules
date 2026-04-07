@@ -1,0 +1,9 @@
+[submodule "client_ws"]
+	path = client_ws
+	url = https://github.com/yubincho3/InternNav-ros2-client
+[submodule "interfaces_ws"]
+	path = interfaces_ws
+	url = https://github.com/yubincho3/InternNav-ros2-interfaces
+[submodule "server_ws"]
+	path = server_ws
+	url = https://github.com/yubincho3/InternNav-ros2-server
