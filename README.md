@@ -37,17 +37,17 @@ Server and robot communicate over the network via zenoh-bridge-ros2dds, which br
 
 | Topic | Type | Publisher | Subscriber(s) |
 |-------|------|-----------|---------------|
-| `/utlidar/robot_odom` | Odometry | *(hardware)* | internnav_planner, internnav_controller |
-| `/internnav/server/system2/instruction` | String | *(external)* | internnav_system2 |
-| `/internnav/server/system2/plan_context` | PlanContext | internnav_system2 | internnav_system1 |
-| `/internnav/server/system2/output_discretes` | DiscreteStamped | internnav_system2 | internnav_system1, internnav_planner |
-| `/internnav/server/system1/output_path` | Path | internnav_system1 | internnav_planner |
-| `/internnav/client/cmd_path` | Path | internnav_planner | internnav_controller |
-| `/internnav/client/cmd_pose` | PoseStamped | internnav_planner | internnav_controller |
-| `/internnav/client/cmd_stop` | Header | internnav_planner | internnav_controller |
-| `/api/sport/request` | Request | internnav_controller | *(hardware)* |
-| `/camera/color/image_raw` | Image | *(hardware)* | internnav_system2, internnav_system1 |
-| `/internnav/server/cmd_reset` | Empty | *(external)* | internnav_system2, internnav_system1 |
+| `/utlidar/robot_odom` | `nav_msgs/Odometry` | *(hardware)* | internnav_planner, internnav_controller |
+| `/internnav/server/system2/instruction` | `std_msgs/String` | *(external)* | internnav_system2 |
+| `/internnav/server/system2/plan_context` | `internnav_server_interfaces/PlanContext` | internnav_system2 | internnav_system1 |
+| `/internnav/server/system2/output_discretes` | `internnav_interfaces/DiscreteStamped` | internnav_system2 | internnav_system1, internnav_planner |
+| `/internnav/server/system1/output_path` | `nav_msgs/Path` | internnav_system1 | internnav_planner |
+| `/internnav/client/cmd_path` | `nav_msgs/Path` | internnav_planner | internnav_controller |
+| `/internnav/client/cmd_pose` | `geometry_msgs/PoseStamped` | internnav_planner | internnav_controller |
+| `/internnav/client/cmd_stop` | `std_msgs/Header` | internnav_planner | internnav_controller |
+| `/api/sport/request` | `unitree_api/Request` | internnav_controller | *(hardware)* |
+| `/camera/color/image_raw` | `sensor_msgs/Image` | *(hardware)* | internnav_system2, internnav_system1 |
+| `/internnav/server/cmd_reset` | `std_msgs/Empty` | *(external)* | internnav_system2, internnav_system1 |
 
 ## 📦 Workspaces
 
