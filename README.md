@@ -24,14 +24,17 @@ A separate client workspace runs on the robot and executes real-time motion cont
 
 Server and robot communicate over the network via zenoh-bridge-ros2dds, which bridges the ROS 2 topic layer across machines and distros.
 
+All inference and control nodes are **lifecycle nodes**, managed by `internnav_manager` on the server side.
+
 ### Nodes
 
-| Node | Workspace |
-|------|-----------|
-| `internnav_system1` | server_ws |
-| `internnav_system2` | server_ws |
-| `internnav_planner` | client_ws |
-| `internnav_controller` | client_ws |
+| Node | Workspace | Type |
+|------|-----------|------|
+| `internnav_manager` | server_ws | Node |
+| `internnav_system1` | server_ws | LifecycleNode |
+| `internnav_system2` | server_ws | LifecycleNode |
+| `internnav_planner` | client_ws | LifecycleNode |
+| `internnav_controller` | client_ws | LifecycleNode |
 
 ### Topics
 
@@ -48,13 +51,21 @@ Server and robot communicate over the network via zenoh-bridge-ros2dds, which br
 | `/api/sport/request` | `unitree_api/Request` | internnav_controller | *(hardware)* |
 | `/camera/color/image_raw` | `sensor_msgs/Image` | *(hardware)* | internnav_system2, internnav_system1 |
 | `/internnav/server/cmd_reset` | `std_msgs/Empty` | *(external)* | internnav_system2, internnav_system1 |
+| `/internnav/system_state` | `std_msgs/String` | internnav_manager | *(external)* |
+
+### Services
+
+| Service | Type | Server | Description |
+|---------|------|--------|-------------|
+| `/internnav/activate` | `std_srvs/Trigger` | internnav_manager | Sequentially configure & activate all nodes |
+| `/internnav/deactivate` | `std_srvs/Trigger` | internnav_manager | Sequentially deactivate all nodes |
 
 ## 📦 Workspaces
 
 | Workspace | Description |
 |-----------|-------------|
 | [`interfaces_ws`](interfaces_ws/README.md) | Custom ROS 2 message definitions — see for message types and topic details |
-| [`server_ws`](server_ws/README.md) | GPU inference — VLN understanding (System2) and trajectory generation (System1) |
+| [`server_ws`](server_ws/README.md) | GPU inference — VLN understanding (System2) and trajectory generation (System1), plus lifecycle manager and bringup |
 | [`client_ws`](client_ws/README.md) | Real-time robot control — path planning and motion execution on Go2 |
 
 ## 🚀 Getting Started
