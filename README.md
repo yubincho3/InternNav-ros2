@@ -9,12 +9,11 @@ A separate client workspace runs on the robot and executes real-time motion cont
 | | Server | Robot |
 |--|--------|-------|
 | **Device** | PC | Unitree Go2 Edu |
-| **OS** | Ubuntu 22.04 | Ubuntu 20.04+ |
-| **ROS 2** | Humble | Foxy |
+| **OS** | Ubuntu 22.04 | Ubuntu 22.04 |
+| **ROS 2** | Humble | Humble |
 | **GPU** | 2× RTX 3090 | — |
 
-- Tested with ROS 2 Foxy (robot) and Humble (server).
-    - Cross-distro communication is handled by zenoh-bridge-ros2dds.
+- Tested with ROS 2 Humble on both the server and the robot.
 - System2 (VLN inference) is the more GPU-intensive component and runs on a dedicated GPU (cuda:1).
     - The System1 TensorRT engine (cuda:0) has lower VRAM requirements.
 
@@ -22,7 +21,7 @@ A separate client workspace runs on the robot and executes real-time motion cont
 
 ![Architecture](assets/ros-architecture.png)
 
-Server and robot communicate over the network via zenoh-bridge-ros2dds, which bridges the ROS 2 topic layer across machines and distros.
+Server and robot communicate over the network via zenoh-bridge-ros2dds, which bridges the ROS 2 topic layer across machines.
 
 All inference and control nodes are **lifecycle nodes**, managed by `internnav_manager` on the server side.
 
